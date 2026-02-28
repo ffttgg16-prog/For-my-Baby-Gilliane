@@ -87,6 +87,22 @@ button {
     transition: all 0.5s ease-in-out;
 }
 
+@media only screen and (max-width: 600px) {
+    .paper-row {
+        flex-direction: column;  /* vertical layout */
+        align-items: center;
+    }
+
+    .paper-row img {
+        margin: 0 0 20px 0;  /* picture sa taas, spacing pababa */
+        max-width: 80%;     /* mas akma sa screen */
+    }
+
+    .paper-container {
+        width: 90%;         /* mas malapad sa maliit na screen */
+    }
+}
+
 .paper-row.show {
     opacity: 1;
     transform: translateY(0);
@@ -188,4 +204,5 @@ button {
 button {
     padding: 12px 25px;
     font-size: 1em;
+
 }
