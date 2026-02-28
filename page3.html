@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Happy Monthsarry 💖</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="document.body.classList.add('fade-in')">
+
+<h1>Happy Monthsarry kahit di na tayo but... 💕</h1>
+<p>Thank you for staying with me. I love you always,
+    more than all the stars in the sky, and I promise to always be here for you too. 😌</p>
+
+
+<!-- Floating Hearts -->
+<div id="hearts"></div>
+
+<button onclick="nextPage()">See Our Memories 📸</button>
+
+<script>
+
+// Hearts
+function createHeart(){
+    const heartsContainer = document.getElementById('hearts');
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = 15 + Math.random() * 15 + 'px';
+    heart.style.height = heart.style.width;
+    heartsContainer.appendChild(heart);
+    setTimeout(()=>heart.remove(), 4000);
+}
+setInterval(createHeart, 300);
+
+function nextPage(){
+    window.location.href = "page4.html";
+}
+</script>
+
+</body>
+</html>

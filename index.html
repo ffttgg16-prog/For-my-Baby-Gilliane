@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Secret 💌</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="document.body.classList.add('fade-in')">
+
+<div class="box">
+    <h2>Enter Password 💖</h2>
+    <input type="password" id="pass" placeholder="Type your password">
+    <p>Hint: dapat monthsarry natin hahaha!</p>
+    <br>
+    <button onclick="check()">Unlock</button>
+</div>
+
+<script>
+function check(){
+    const password = "011824"; // palitan mo ng monthsarry nyo
+    const inputVal = document.getElementById("pass").value;
+
+    if(inputVal === password){
+
+        // redirect to page2
+        window.location.href = "page2.html";
+    } else {
+        alert("Wrong password 😜");
+    }
+}   
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Hi Love 💕</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="document.body.classList.add('fade-in')">
+
+<h1>Hi Love 😌</h1>
+<p>May gusto lang ako sabihin...</p>
+<button onclick="nextPage()">Next 💌</button>
+
+<!-- Audio element outside script -->
+<audio id="bgMusic" src="music.mp3" loop></audio>
+
+<script>
+    
+function nextPage(){
+    // Play music first
+    const music = document.getElementById('bgMusic');
+    music.volume = 0.5; // optional, 50% volume
+    music.play().catch(e => console.log("Autoplay blocked")); // in case mobile browser
+
+    // Then go to page3
+    window.location.href = "page3.html";
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,191 @@
+/* General Body */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    color: white;
+    transition: all 1s ease-in-out;
+    opacity: 0; /* fade-in effect */
+    background: linear-gradient(to right, #ffdde1, #ee9ca7);
+    min-height: 100vh;
+}
+
+body.fade-in {
+    opacity: 1;
+}
+
+/* Inputs & Buttons */
+input {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Floating Hearts (optional for later) */
+.heart {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background: red;
+    transform: rotate(45deg);
+    animation: floatUp 4s linear infinite;
+}
+.heart::before,
+.heart::after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: red;
+    border-radius: 50%;
+    position: absolute;
+}
+.heart::before { top: -10px; left: 0; }
+.heart::after { left: 10px; top: 0; }
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(45deg); opacity:1; }
+    100% { transform: translateY(-500px) rotate(45deg); opacity:0; }
+}
+
+/* Gallery Grid */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    justify-items: center;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.8s ease-in-out;
+}
+
+.gallery img:hover {
+    transform: scale(1.1);
+}
+
+/* Paper row (picture + essay container) */
+.paper-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease-in-out;
+}
+
+.paper-row.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Paper container (essay message) */
+.paper-container {
+    color: #333; /* text color dark for visibility */
+    background: #fff8dc;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    position: relative;
+    transition: all 0.5s ease-in-out;
+    width: 90%; max-width: 400px;
+}
+
+/* Close button */
+.paper-container .close-btn {
+    position: absolute;
+    top: 50px;
+    right: -25px;
+    transform: translateY(-50%); 
+    border: none;
+    background: #ff6b81;
+    font-size: 22px;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Typewriter effect for essay text */
+.typewriter span {
+    display: inline-block; /* fixed the typo */
+    opacity: 0;
+    animation: typewriter 0.05s forwards;
+}
+
+.typewriter {
+    line-height: 1.6;       /* para may spacing sa taas-baba */
+    white-space: pre-wrap;  /* para mag-respect ng spaces at line breaks */
+    word-wrap: break-word;  /* para di lumabas sa box yung sobrang haba */
+}
+
+@keyframes typewriter {
+    to { opacity: 1; }
+}
+
+/* Selected image in paper row */
+.paper-row img {
+    flex-wrap: wrap;
+    max-width: 250px;
+    border-radius: 15px;
+    margin-right: 20px;
+    transition: all 0.5s ease-in-out;
+}
+
+/* Exit overlay */
+#exitOverlay {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size: 5vw;
+    opacity:0;
+    pointer-events:none;
+    transition: opacity 1s ease-in-out;
+    z-index: 9999;
+}
+#exitOverlay.active {
+    opacity:1;
+    pointer-events:auto;
+}
+
+#exitBtn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    border-radius: 10px;
+    background: #ff6b81;
+    color: white;
+    border: none;
+    cursor: pointer;
+    z-index: 10000;
+}
+#exitBtn:hover {
+    background: #ff4b61;
+}
+
+button {
+    padding: 12px 25px;
+    font-size: 1em;
+}

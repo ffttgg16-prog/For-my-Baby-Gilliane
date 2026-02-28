@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <title>Our Memories 📸</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body onload="document.body.classList.add('fade-in')">
+
+<h1>Our Memories 📸</h1>
+
+<!-- Gallery -->
+<div class="gallery" id="gallery">
+    <img src="pic1.jpg" alt="Memory 1" onclick="showPaper(this, 'Alam mo, tuwing tinitingnan ko itong picture natin sa beach, bigla akong napapangiti. Ang saya ng araw na ‘to kasi kasama kita—ang init ng araw, ang bango ng dagat, at ang saya natin habang tawa-tawa lang, walang iniintindi. Parang ang perfect ng moment na ‘to kasi ikaw at ako lang, walang problema, just pure happiness. Thank you talaga sa pagiging ikaw, sa mga tawa, sa mga yakap, at sa bawat moment natin')">
+    <img src="pic2.jpg" alt="Memory 2" onclick="showPaper(this, 'Remember this day? Ang saya ng araw na ‘to kasi nakasama kita. Ang ganda ng outfit mo, at parang mas nagshine pa ang gabi kasi kasama kita. Kahit gaano pa ka-busy ang mundo, sa moment na ‘to, puro tayo lang—tawa, kwento, at yung kakaibang kilig na nararamdaman ko tuwing hawak kita. Thank you a bawat tawa, sa bawat yakap, at sa bawat simpleng sandaling parang ganito na puno ng kilig at saya. I love you always !')">
+    <img src="pic3.jpg" alt="Memory 3" onclick="showPaper(this, 'Alam mo, habang tinitingnan ko itong picture natin sa cave swimming, bigla akong bumalik sa saya ng araw na ‘to Ang lamig ng tubig, ang ganda ng cave, at syempre, ang perfect ng moment kasi kasama kita. Ang saya nating tawa-tawa lang habang sumisid at naglalaro sa tubig, parang walang iniintindi kundi ang mag-enjoy sa bawat segundo. Salamat sa pagiging ikaw, sa bawat tawa, sa bawat halakhak, at sa bawat moment na parang ganito—simple pero puno ng saya at kilig. I love you always!')">
+    <img src="pic4.jpg" alt="Memory 4" onclick="showPaper(this, 'Sobrang cute mo dito Kahit gaano ka-epic ng picture, ikaw ang nagpapasaya sa moment na ‘to—ang mga tawa, ang mga kilig, at kahit yung simpleng hawak ng kamay, Every time na nakikita ko ito, naaalala ko yung saya, yung laughter, at yung feeling na parang nothing else matters kundi tayo lang. Iloveyoumore!')">
+    <img src="pic5.jpg" alt="Memory 5" onclick="showPaper(this, 'Cute mo talaga dito Parang kahit stress ng travel, lahat nawala kasi kasama kita. Ang saya ng usapan natin sa biyahe, yung konting tawa sa mga delays, at yung kilig tuwing hawak ko kamay mo habang naglalakad sa airport. Parang sobrang special ng moment na ‘to kasi hindi lang basta travel it’s memories with you na hindi ko malilimutan.')">
+    <img src="pic6.jpg" alt="Memory 6" onclick="showPaper(this, 'Ang saya kasi kahit simpleng filter lang, naging espesyal ang moment na ‘to kasi kasama kita. Parang kahit Mario world man ‘to, ikaw pa rin ang highlight ng game ko. Every time na nakikita ko ito, natatawa ako at nare-realize ko na sa lahat ng levels ng life, gusto ko lagi kang kasama ko—sa adventure, sa tawa, at syempre, sa kilig moments.')">
+</div>
+
+<div id="hearts"></div>
+
+<!-- Essay container -->
+<div class="paper-row" id="paperRow" style="display:none;">
+    <img id="selectedImg" src="" alt="Memory" style="max-width:250px; border-radius:15px; margin-right:20px;">
+    <div class="paper-container" id="paper">
+        <button class="close-btn" onclick="closePaper()">✖</button>
+        <div class="typewriter" id="typewriter"></div>
+    </div>
+</div>
+
+<audio id="bgMusic" src="music.mp3" loop autoplay></audio>
+
+<button id="exitBtn" onclick="exitPage()">Exit 💖</button>
+
+<!-- Exit overlay -->
+<div id="exitOverlay">
+    <h1>I love you so much Baby 💖</h1>
+</div>
+
+<script>
+function showPaper(img, text){
+    const gallery = document.getElementById('gallery');
+    const paperRow = document.getElementById('paperRow');
+    const selectedImg = document.getElementById('selectedImg');
+    const paper = document.getElementById('paper');
+    const typewriter = document.getElementById('typewriter');
+
+    // Hide gallery
+    gallery.style.display = 'none';
+
+    // Set src first
+    selectedImg.src = img.src;
+
+    // Reset paper content
+    paper.classList.remove('active');
+    typewriter.innerHTML = '';
+
+    // Show paper row but hidden first
+    paperRow.classList.remove('show');
+    paperRow.style.display = 'flex';
+
+    // Short timeout para ma-trigger ang transition
+    setTimeout(() => {
+        paperRow.classList.add('show'); // smooth slide + fade
+    }, 10);
+
+    // Show paper container after small delay para smooth
+    setTimeout(() => {
+        paper.classList.add('active');
+    }, 200);
+
+    // Typewriter effect
+    for(let i=0; i<text.length; i++){
+        let span = document.createElement('span');
+        span.textContent = text[i];
+        span.style.animationDelay = `${i*0.05}s`;
+        typewriter.appendChild(span);
+    }
+}
+
+function closePaper(){
+    const gallery = document.getElementById('gallery');
+    const paperRow = document.getElementById('paperRow');
+    const paper = document.getElementById('paper');
+
+    // Hide paper container
+    paper.classList.remove('active');
+
+    // Remove show class for smooth hide
+    paperRow.classList.remove('show');
+
+    // Delay para smooth, tapos balik gallery
+    setTimeout(() => {
+        paperRow.style.display = 'none';
+        gallery.style.display = 'grid';
+    }, 500); // match transition time
+}
+
+function createHeart() {
+    const heartsContainer = document.getElementById('hearts');
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+
+    // Random starting position
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = 15 + Math.random() * 15 + 'px'; // random size
+    heart.style.height = heart.style.width;
+
+    // Append to container
+    heartsContainer.appendChild(heart);
+
+    // Remove after animation
+    setTimeout(() => {
+        heart.remove();
+    }, 4000);
+}
+
+// Generate hearts every 300ms
+setInterval(createHeart, 300);
+
+function exitPage(){
+    document.getElementById('gallery').style.display = 'none';
+    document.getElementById('paperRow').style.display = 'none';
+    document.getElementById('hearts').style.display = 'none';
+
+    const overlay = document.getElementById('exitOverlay');
+    overlay.classList.add('active');
+
+    setTimeout(() => {
+        overlay.style.transition = 'opacity 2s ease';
+        overlay.style.opacity = 0;
+
+        // Pagkatapos mag fade out, auto close/redirect
+        setTimeout(() => {
+            window.location.href = "about:blank"; // parang nag-exit talaga
+        }, 2000);
+
+    }, 3000);
+}
+
+const music = document.getElementById('bgMusic');
+music.volume = 0.5;
+music.play().catch(e => console.log("Autoplay blocked"));
+
+</script>
+
+</body>
+</html>
